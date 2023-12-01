@@ -29,20 +29,24 @@ bot.onText(/\/show_day/, (msg) => {
 
   // Listen for the user's response
   bot.once("username", (msg) => {
-    const username = msg.username;
+    try {
+      const username = msg.username;
 
-    axios
-      .get(
-        "http://135.125.137.223:2020/api/170076536726XMN43GASWTRQ1/user/mrzar"
-      )
-      .then((res) => {
-        bot.sendMessage(chatId, res);
-        console.log(res);
-      })
-      .catch((error) => {
-        bot.sendMessage(chatId, error);
-        console.log(error);
-      });
+      axios
+        .get(
+          "http://135.125.137.223:2020/api/170076536726XMN43GASWTRQ1/user/mrzar"
+        )
+        .then((res) => {
+          bot.sendMessage(chatId, res);
+          console.log(res);
+        })
+        .catch((error) => {
+          bot.sendMessage(chatId, error);
+          console.log(error);
+        });
+    } catch (error) {
+      console.log(error);
+    }
 
     // Send some data based on the entered username (replace this with your actual data)
 
