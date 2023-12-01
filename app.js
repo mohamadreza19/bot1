@@ -13,12 +13,8 @@ bot.onText(/\/start/, (msg) => {
   // Define the keyboard layout
   const keyboard = [
     [
-      { text: "Button 1", callback_data: "button1" },
-      { text: "Button 2", callback_data: "button2" },
-    ],
-    [
-      { text: "Button 3", callback_data: "button3" },
-      { text: "Button 4", callback_data: "button4" },
+      { text: "مانده حجم", callback_data: "/show_gb" },
+      { text: "مانده روز", callback_data: "/show_day" },
     ],
   ];
 
@@ -29,6 +25,26 @@ bot.onText(/\/start/, (msg) => {
 
   // Send a message with the inline keyboard
   bot.sendMessage(chatId, "Choose an option:", { reply_markup: replyMarkup });
+});
+bot.onText(/\/show_gb/, (msg) => {
+  const chatId = msg.chat.id;
+
+  // Define the keyboard layout
+
+  // Create the inline keyboard
+
+  // Send a message with the inline keyboard
+  bot.sendMessage(chatId, "00000gb");
+});
+bot.onText(/\/show_day/, (msg) => {
+  const chatId = msg.chat.id;
+
+  // Define the keyboard layout
+
+  // Create the inline keyboard
+
+  // Send a message with the inline keyboard
+  bot.sendMessage(chatId, "0000day");
 });
 
 // Listen for any kind of message. There are different kinds of
