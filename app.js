@@ -11,12 +11,6 @@ bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
 
   // Define the keyboard layout
-  const keyboard = [
-    [
-      { text: "مانده حجم", callback_data: "/show_gb" },
-      { text: "مانده روز", callback_data: "/show_day" },
-    ],
-  ];
 
   // Create the inline keyboard
   const replyMarkup = {
@@ -24,7 +18,25 @@ bot.onText(/\/start/, (msg) => {
   };
 
   // Send a message with the inline keyboard
-  bot.sendMessage(chatId, "Choose an option:", { reply_markup: replyMarkup });
+  bot.sendMessage(chatId, "لطفا از تب منو یک گزینه را انتخاب کنید");
+});
+bot.onText(/\/show_day/, (msg) => {
+  const chatId = msg.chat.id;
+
+  // Ask the user for their username
+  bot.sendMessage(chatId, "Please enter your username:");
+
+  // Listen for the user's response
+  bot.once("text", (msg) => {
+    const username = msg.text;
+    console.log(msg);
+
+    // Send some data based on the entered username (replace this with your actual data)
+    const responseData = `Hello, ${username}! Here is some data for you.`;
+    bot.sendMessage(chatId, responseData);
+
+    // You can also use userData[chatId] to access the user's data later in the conversation
+  });
 });
 
 bot.on("callback_query", (query) => {
