@@ -36,12 +36,15 @@ bot.onText(/\/show_day/, (msg) => {
         "http://135.125.137.223:2020/api/170076536726XMN43GASWTRQ1/user/mrzar"
       )
       .then((res) => {
+        bot.sendMessage(chatId, res);
         console.log(res);
+      })
+      .catch((error) => {
+        bot.sendMessage(chatId, error);
+        console.log(error);
       });
 
     // Send some data based on the entered username (replace this with your actual data)
-    const responseData = `Hello, ${username}! Here is some data for you.`;
-    bot.sendMessage(chatId, responseData);
 
     // You can also use userData[chatId] to access the user's data later in the conversation
   });
