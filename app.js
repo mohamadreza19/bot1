@@ -1,21 +1,29 @@
-const express = require("express");
-const token = "6555410778:AAFrseXgj6HGWtvkv2qhmovPqIadaJAyMFE";
 const TelegramBot = require("node-telegram-bot-api");
+
+// replace the value below with the Telegram token you receive from @BotFather
+const token = "6555410778:AAFrseXgj6HGWtvkv2qhmovPqIadaJAyMFE";
+
+// Create a bot that uses 'polling' to fetch new updates
 const bot = new TelegramBot(token, { polling: true });
-const app = express();
-const port = 3000;
 
-const admin = require("./routes/admin");
+// Matches "/echo [whatever]"
+bot.onText(/\/echo (.+)/, (msg, match) => {
+  // 'msg' is the received Message from Telegram
+  // 'match' is the result of executing the regexp above on the text content
+  // of the message
 
-bot.onText("/start", (msg) => {
-  console.log("hi");
+  const chatId = msg.chat.id;
+  const resp = match[1]; // the captured "whatever"
+
+  // send back the matched "whatever" to the chat
+  bot.sendMessage(chatId, resp);
 });
 
-// app.use("/", admin);
-// // app.get("/", (req, res) => {
-// //   res.send("Hello World!");
-// // });
+// Listen for any kind of message. There are different kinds of
+// messages.
+bot.on("message", (msg) => {
+  const chatId = msg.chat.id;
 
-// app.listen(port, () => {
-//   console.log(`Example app listening on port ${port}`);
-// });
+  // send a message to the chat acknowledging receipt of their message
+  bot.sendMessage(chatId, "Received your message");
+});
