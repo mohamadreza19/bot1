@@ -36,15 +36,12 @@ bot.onText(/\/show_gb/, (msg) => {
   // Send a message with the inline keyboard
   bot.sendMessage(chatId, "00000gb");
 });
-bot.onText(/\/show_day/, (msg) => {
-  const chatId = msg.chat.id;
+bot.on("callback_query", (query) => {
+  const chatId = query.message.chat.id;
+  const data = query.data;
 
-  // Define the keyboard layout
-
-  // Create the inline keyboard
-
-  // Send a message with the inline keyboard
-  bot.sendMessage(chatId, "0000day");
+  // Handle the button press
+  bot.sendMessage(chatId, `You pressed: ${data}`);
 });
 
 // Listen for any kind of message. There are different kinds of
