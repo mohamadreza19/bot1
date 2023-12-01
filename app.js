@@ -27,25 +27,24 @@ bot.onText(/\/show_day/, (msg) => {
   // Ask the user for their username
   bot.sendMessage(chatId, "لطفا یوزرنیم خود را وارد کنید");
 
-  try {
-    // Listen for the user's response
-    bot.once("username", async (msg) => {
-      const username = msg.username;
-      console.log(msg);
-      const res = await axios.get(
+  // Listen for the user's response
+  bot.once("username", (msg) => {
+    const username = msg.username;
+
+    axios
+      .get(
         "http://135.125.137.223:2020/api/170076536726XMN43GASWTRQ1/user/mrzar"
-      );
-      console.log(res);
+      )
+      .then((res) => {
+        console.log(res);
+      });
 
-      // Send some data based on the entered username (replace this with your actual data)
-      const responseData = `Hello, ${username}! Here is some data for you.`;
-      bot.sendMessage(chatId, responseData);
+    // Send some data based on the entered username (replace this with your actual data)
+    const responseData = `Hello, ${username}! Here is some data for you.`;
+    bot.sendMessage(chatId, responseData);
 
-      // You can also use userData[chatId] to access the user's data later in the conversation
-    });
-  } catch (error) {
-    console.log(error);
-  }
+    // You can also use userData[chatId] to access the user's data later in the conversation
+  });
 });
 
 bot.on("callback_query", (query) => {
