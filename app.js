@@ -1,4 +1,5 @@
 const TelegramBot = require("node-telegram-bot-api");
+const axios = require("axios");
 
 // replace the value below with the Telegram token you receive from @BotFather
 const token = "6555410778:AAFrseXgj6HGWtvkv2qhmovPqIadaJAyMFE";
@@ -7,7 +8,7 @@ const token = "6555410778:AAFrseXgj6HGWtvkv2qhmovPqIadaJAyMFE";
 const bot = new TelegramBot(token, { polling: true });
 
 // Matches "/echo [whatever]"
-bot.onText(/\/start/, (msg) => {
+bot.onText(/\/start/, async (msg) => {
   const chatId = msg.chat.id;
 
   // Define the keyboard layout
@@ -24,19 +25,27 @@ bot.onText(/\/show_day/, (msg) => {
   const chatId = msg.chat.id;
 
   // Ask the user for their username
-  bot.sendMessage(chatId, "Please enter your username:");
+  bot.sendMessage(chatId, "لطفا یوزرنیم خود را وارد کنید");
 
-  // Listen for the user's response
-  bot.once("text", (msg) => {
-    const username = msg.text;
-    console.log(msg);
+  try {
+    // Listen for the user's response
+    bot.once("username", async (msg) => {
+      const username = msg.username;
+      console.log(msg);
+      const res = await axios.get(
+        "http://135.125.137.223:2020/api/170076536726XMN43GASWTRQ1/user/mrzar"
+      );
+      console.log(res);
 
-    // Send some data based on the entered username (replace this with your actual data)
-    const responseData = `Hello, ${username}! Here is some data for you.`;
-    bot.sendMessage(chatId, responseData);
+      // Send some data based on the entered username (replace this with your actual data)
+      const responseData = `Hello, ${username}! Here is some data for you.`;
+      bot.sendMessage(chatId, responseData);
 
-    // You can also use userData[chatId] to access the user's data later in the conversation
-  });
+      // You can also use userData[chatId] to access the user's data later in the conversation
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 bot.on("callback_query", (query) => {
