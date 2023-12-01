@@ -25,22 +25,14 @@ bot.onText(/\/show_day/, (msg) => {
   bot.sendMessage(chatId, "لطفا یوزرنیم خود را وارد کنید");
 
   // Listen for the user's response
-  bot.once("username", (msg) => {
+  bot.once("username", async (msg) => {
     try {
       const username = msg.username;
 
-      axios
-        .get(
-          "http://135.125.137.223:2020/api/170076536726XMN43GASWTRQ1/user/mrzar"
-        )
-        .then((res) => {
-          bot.sendMessage(chatId, res);
-          console.log(res);
-        })
-        .catch((error) => {
-          bot.sendMessage(chatId, error);
-          console.log(error);
-        });
+      const res = await axios.get(
+        "http://135.125.137.223:2020/api/170076536726XMN43GASWTRQ1/user/mrzar"
+      );
+      console.log(res);
     } catch (error) {
       console.log(error);
     }
