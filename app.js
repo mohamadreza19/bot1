@@ -26,22 +26,18 @@ bot.onText(/\/start/, (msg) => {
   // Send a message with the inline keyboard
   bot.sendMessage(chatId, "Choose an option:", { reply_markup: replyMarkup });
 });
-bot.onText(/\/show_gb/, (msg) => {
-  const chatId = msg.chat.id;
 
-  // Define the keyboard layout
-
-  // Create the inline keyboard
-
-  // Send a message with the inline keyboard
-  bot.sendMessage(chatId, "00000gb");
-});
 bot.on("callback_query", (query) => {
   const chatId = query.message.chat.id;
   const data = query.data;
+  if (data === "/show_gb") {
+    bot.sendMessage(chatId, `10Gb`);
+  }
+  if (data === "/show_day") {
+    bot.sendMessage(chatId, `30`);
+  }
 
   // Handle the button press
-  bot.sendMessage(chatId, `You pressed: ${data}`);
 });
 
 // Listen for any kind of message. There are different kinds of
