@@ -14,9 +14,6 @@ bot.onText(/\/start/, async (msg) => {
   // Define the keyboard layout
 
   // Create the inline keyboard
-  const replyMarkup = {
-    inline_keyboard: keyboard,
-  };
 
   // Send a message with the inline keyboard
   bot.sendMessage(chatId, "لطفا از تب منو یک گزینه را انتخاب کنید");
