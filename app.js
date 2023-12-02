@@ -1,5 +1,6 @@
 const TelegramBot = require("node-telegram-bot-api");
 const axios = require("axios");
+const moment = require("jalali-moment");
 
 // replace the value below with the Telegram token you receive from @BotFather
 const token = "6555410778:AAFrseXgj6HGWtvkv2qhmovPqIadaJAyMFE";
@@ -18,7 +19,7 @@ bot.onText(/\/start/, async (msg) => {
   // Send a message with the inline keyboard
   bot.sendMessage(chatId, "لطفا از تب منو یک گزینه را انتخاب کنید");
 });
-bot.onText(/\/show_day/, (msg) => {
+bot.onText(/\/show_balance/, (msg) => {
   const chatId = msg.chat.id;
 
   // Ask the user for their username
@@ -36,9 +37,20 @@ bot.onText(/\/show_day/, (msg) => {
       const responseData = `یوزری با این مشخصات پیدا نشد`;
       bot.sendMessage(chatId, responseData);
     } else {
-      const id = data[0].id;
+      const realData = data[0];
+      const start_date = moment(realData.start_date);
+      const endDate = moment(realData.end_date);
+      const dif = endDate.diff(start_date, "days");
+      const alltrafficAccess = realData.traffic;
+      const total_use = `${realData.traffics[0].total}مگ`;
 
-      const responseData = `${id}`;
+      const responseData = `
+      تاریخ فعالسازی :${moment(start_date).locale("fa").format("y/M/D")}
+      تاریخ انقضا :${moment(endDate).locale("fa").format("y/M/D")}
+      تعداد روز مانده :${dif}
+      ترافیک قابل دسترس :${alltrafficAccess}
+      ترافیک  استفاده شده :${total_use}
+      `;
       bot.sendMessage(chatId, responseData);
     }
 
