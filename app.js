@@ -46,7 +46,9 @@ bot.onText(/\/show_balance/, (msg) => {
 
       const responseData = `
       تاریخ فعالسازی :${moment(start_date).locale("fa").format("y/M/D")}
-      تاریخ انقضا :${moment(endDate).locale("fa").format("y/M/D") || 0}
+      تاریخ انقضا :${
+        endDate !== null ? moment(endDate).locale("fa").format("y/M/D") : 0
+      }
       تعداد روز مانده :${dif}
       ترافیک قابل دسترس :${alltrafficAccess}
       ترافیک  استفاده شده :${total_use}
