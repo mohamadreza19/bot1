@@ -37,15 +37,21 @@ bot.onText(/\/show_balance/, (msg) => {
       const responseData = `یوزری با این مشخصات پیدا نشد`;
       bot.sendMessage(chatId, responseData);
     } else {
+      let end_date = Date.now();
       const realData = data[0];
+
       const start_date = moment(realData.start_date);
-      const endDate = moment(realData.end_date);
-      const dif = endDate.diff(start_date, "days");
+      if (realData.end_date) {
+        end_date = moment(realData.end_date);
+      } else {
+        end_date = 0;
+      }
+      const dif = end_date.diff(start_date, "days");
       const alltrafficAccess = realData.traffic;
       const total_use = `${realData.traffics[0].total}مگ`;
 
-      const end_dateRes = endDate
-        ? moment(endDate).locale("fa").format("y/M/D")
+      const end_dateRes = end_date
+        ? moment(end_date).locale("fa").format("y/M/D")
         : "ندارد";
       const alltrafficAccess_format = alltrafficAccess
         ? alltrafficAccess
