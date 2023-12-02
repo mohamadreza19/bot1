@@ -23,7 +23,7 @@ bot.onText(/\/show_balance/, (msg) => {
   const chatId = msg.chat.id;
 
   // Ask the user for their username
-  bot.sendMessage(chatId, "Please enter your username:");
+  bot.sendMessage(chatId, "لطفا نام یوزر را وارد کنید:");
 
   // Listen for the user's response using bot.once
   bot.once("text", async (msg) => {
