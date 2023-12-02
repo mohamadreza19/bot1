@@ -39,8 +39,8 @@ bot.onText(/\/show_day/, (msg) => {
       const responseData = `Hello, ${username}! Here is some data for you.`;
       bot.sendMessage(chatId, responseData);
     } else {
-      const responseData = `Hello, ${username}! Here is some data for you.`;
-      bot.sendMessage(chatId, data);
+      const responseData = `پیدا نشد`;
+      bot.sendMessage(chatId, responseData);
     }
 
     // You can also use userData[chatId] to access the user's data later in the conversation
