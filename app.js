@@ -32,6 +32,7 @@ bot.onText(/\/show_day/, (msg) => {
     );
     // Save the username to the userData dictionary (you can replace this with your actual data retrieval logic)
 
+    console.log("test");
     console.log(response);
     // Send some data based on the entered username (replace this with your actual data)
     const responseData = `Hello, ${username}! Here is some data for you.`;
