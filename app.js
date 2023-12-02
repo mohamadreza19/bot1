@@ -28,7 +28,7 @@ bot.onText(/\/show_day/, (msg) => {
   bot.once("text", async (msg) => {
     const username = msg.text;
     const response = await axios.get(
-      `http://135.125.137.223:2020/api/170076536726XMN43GASWTRQ1/user/mrzar`
+      `http://135.125.137.223:2020/api/170076536726XMN43GASWTRQ1/user/${username}`
     );
     // Save the username to the userData dictionary (you can replace this with your actual data retrieval logic)
 
