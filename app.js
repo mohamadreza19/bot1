@@ -32,7 +32,7 @@ bot.onText(/\/show_day/, (msg) => {
       // const res = await axios.get(
       //   "http://135.125.137.223:2020/api/170076536726XMN43GASWTRQ1/user/mrzar"
       // );
-      console.log(res);
+      // console.log(res);
       bot.sendMessage(chatId, username);
     } catch (error) {
       console.log(error);
