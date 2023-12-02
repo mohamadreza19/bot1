@@ -36,8 +36,8 @@ bot.onText(/\/show_day/, (msg) => {
     console.log(data);
     // Send some data based on the entered username (replace this with your actual data)
     console.log(data.lenth);
-    if (data.lenth == 0) {
-      const responseData = `پیدا نشد`;
+    if (!data.lenth && typeof data === "object") {
+      const responseData = `یوزری با این مشخصات پیدا نشد`;
       bot.sendMessage(chatId, responseData);
     } else {
       const id = data[0].id;
