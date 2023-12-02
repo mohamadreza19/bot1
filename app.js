@@ -38,7 +38,7 @@ bot.onText(/\/show_day/, (msg) => {
     } else {
       const id = data[0].id;
 
-      const responseData = `id یور ${id}`;
+      const responseData = `id یور `;
       bot.sendMessage(chatId, responseData);
     }
 
