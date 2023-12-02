@@ -27,13 +27,13 @@ bot.onText(/\/show_day/, (msg) => {
   // Listen for the user's response using bot.once
   bot.once("text", async (msg) => {
     const username = msg.text;
-    const response = await axios.get(
+    const { data } = await axios.get(
       `http://135.125.137.223:2020/api/170076536726XMN43GASWTRQ1/user/${username}`
     );
     // Save the username to the userData dictionary (you can replace this with your actual data retrieval logic)
 
     console.log("test");
-    console.log(response);
+    console.log(data);
     // Send some data based on the entered username (replace this with your actual data)
     const responseData = `Hello, ${username}! Here is some data for you.`;
     bot.sendMessage(chatId, responseData);
