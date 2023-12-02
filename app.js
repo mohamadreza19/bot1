@@ -33,6 +33,7 @@ bot.onText(/\/show_day/, (msg) => {
         "http://135.125.137.223:2020/api/170076536726XMN43GASWTRQ1/user/mrzar"
       );
       console.log(res);
+      bot.sendMessage(chatId, res);
     } catch (error) {
       console.log(error);
     }
