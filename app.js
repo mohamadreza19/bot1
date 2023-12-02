@@ -44,11 +44,17 @@ bot.onText(/\/show_balance/, (msg) => {
       const alltrafficAccess = realData.traffic;
       const total_use = `${realData.traffics[0].total}مگ`;
 
+      const end_dateRes = endDate
+        ? moment(endDate).locale("fa").format("y/M/D")
+        : "ندارد";
+      const alltrafficAccess_format = alltrafficAccess
+        ? alltrafficAccess
+        : "نامحدود";
       const responseData = `
       تاریخ فعالسازی :${moment(start_date).locale("fa").format("y/M/D")}
-      تاریخ انقضا :${moment(endDate).locale("fa").format("y/M/D")}
+      تاریخ انقضا :${end_dateRes}
       تعداد روز مانده :${dif}
-      ترافیک قابل دسترس :${alltrafficAccess}
+      ترافیک قابل دسترس :${alltrafficAccess_format}
       ترافیک  استفاده شده :${total_use}
       `;
       bot.sendMessage(chatId, responseData);
