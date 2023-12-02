@@ -19,7 +19,7 @@ bot.onText(/\/start/, async (msg) => {
   // Send a message with the inline keyboard
   bot.sendMessage(chatId, "لطفا از تب منو یک گزینه را انتخاب کنید");
 });
-bot.onText("/show_balance", (msg) => {
+bot.onText(/\/show_balance/, (msg) => {
   const chatId = msg.chat.id;
 
   // Ask the user for their username
