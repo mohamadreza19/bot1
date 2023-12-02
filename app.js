@@ -35,8 +35,13 @@ bot.onText(/\/show_day/, (msg) => {
     console.log("test");
     console.log(data);
     // Send some data based on the entered username (replace this with your actual data)
-    const responseData = `Hello, ${username}! Here is some data for you.`;
-    bot.sendMessage(chatId, responseData);
+    if (!data.lenth > 1) {
+      const responseData = `Hello, ${username}! Here is some data for you.`;
+      bot.sendMessage(chatId, responseData);
+    } else {
+      const responseData = `Hello, ${username}! Here is some data for you.`;
+      bot.sendMessage(chatId, data);
+    }
 
     // You can also use userData[chatId] to access the user's data later in the conversation
   });
