@@ -34,6 +34,7 @@ bot.onText(/\/show_day/, (msg) => {
 
     console.log("test");
     console.log(data);
+    console.log(data.length);
     // Send some data based on the entered username (replace this with your actual data)
     console.log(typeof data);
     if (typeof data === "object") {
