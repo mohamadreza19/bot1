@@ -29,18 +29,14 @@ bot.onText(/\/show_day/, (msg) => {
     try {
       const username = msg.username;
 
-      const res = await axios.get(
-        "http://135.125.137.223:2020/api/170076536726XMN43GASWTRQ1/user/mrzar"
-      );
+      // const res = await axios.get(
+      //   "http://135.125.137.223:2020/api/170076536726XMN43GASWTRQ1/user/mrzar"
+      // );
       console.log(res);
-      bot.sendMessage(chatId, res);
+      bot.sendMessage(chatId, username);
     } catch (error) {
       console.log(error);
     }
-
-    // Send some data based on the entered username (replace this with your actual data)
-
-    // You can also use userData[chatId] to access the user's data later in the conversation
   });
 });
 
