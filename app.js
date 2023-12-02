@@ -38,15 +38,17 @@ bot.onText(/\/show_balance/, (msg) => {
       bot.sendMessage(chatId, responseData);
     } else {
       let end_date = Date.now();
+      let dif = 0;
       const realData = data[0];
 
       const start_date = moment(realData.start_date);
       if (realData.end_date) {
         end_date = moment(realData.end_date);
+        dif = end_date.diff(start_date, "days");
       } else {
         end_date = 0;
       }
-      const dif = end_date.diff(start_date, "days");
+
       const alltrafficAccess = realData.traffic;
       const total_use = `${realData.traffics[0].total}مگ`;
 
@@ -89,5 +91,5 @@ bot.on("message", (msg) => {
   const chatId = msg.chat.id;
 
   // send a message to the chat acknowledging receipt of their message
-  bot.sendMessage(chatId, "Received your message");
+  // bot.sendMessage(chatId, "Received your message");
 });
