@@ -22,21 +22,19 @@ bot.onText(/\/show_day/, (msg) => {
   const chatId = msg.chat.id;
 
   // Ask the user for their username
-  bot.sendMessage(chatId, "لطفا یوزرنیم خود را وارد کنید");
+  bot.sendMessage(chatId, "Please enter your username:");
 
-  // Listen for the user's response
-  bot.once("username", async (msg) => {
-    try {
-      const username = msg.username;
+  // Listen for the user's response using bot.once
+  bot.once("text", (msg) => {
+    const username = msg.text;
 
-      // const res = await axios.get(
-      //   "http://135.125.137.223:2020/api/170076536726XMN43GASWTRQ1/user/mrzar"
-      // );
-      // console.log(res);
-      bot.sendMessage(chatId, username);
-    } catch (error) {
-      console.log(error);
-    }
+    // Save the username to the userData dictionary (you can replace this with your actual data retrieval logic)
+
+    // Send some data based on the entered username (replace this with your actual data)
+    const responseData = `Hello, ${username}! Here is some data for you.`;
+    bot.sendMessage(chatId, responseData);
+
+    // You can also use userData[chatId] to access the user's data later in the conversation
   });
 });
 
