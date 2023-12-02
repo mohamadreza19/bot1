@@ -35,11 +35,14 @@ bot.onText(/\/show_day/, (msg) => {
     console.log("test");
     console.log(data);
     // Send some data based on the entered username (replace this with your actual data)
-    if (!data.lenth > 1) {
-      const responseData = `Hello, ${username}! Here is some data for you.`;
+
+    if (data.lenth == 0) {
+      const responseData = `پیدا نشد`;
       bot.sendMessage(chatId, responseData);
     } else {
-      const responseData = `پیدا نشد`;
+      const id = data[0].id;
+
+      const responseData = `id یور ${id}`;
       bot.sendMessage(chatId, responseData);
     }
 
